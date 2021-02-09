@@ -4,7 +4,7 @@ spl_autoload_register('my_autoloader');
 //class below incapsulates tax calculation strategy
 class TaxStrategy
 {
-    private $taxRate; //tax rate in percents
+    private float $taxRate; //tax rate in percents
 
     public function __construct($taxRate) {
         $this->taxRate = $taxRate;
@@ -19,7 +19,7 @@ class TaxStrategy
         return $this->taxRate;
     }
     //calculates tax for an order based on the set rate
-    public function calculateTax($orderTotal) {
-        return $orderTotal * $this->taxRate / 100;
+    public function calculateTax($orderPrice) {
+        return round($orderPrice * $this->taxRate / 100, 2);
     }
 }

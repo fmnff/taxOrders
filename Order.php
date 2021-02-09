@@ -2,14 +2,17 @@
 spl_autoload_register('my_autoloader');
 
 //Class below represents orders
-class Order
+class Order implements SplSubject
 {
-    private float $total = 0; //total order cost
+    
+    private float $price; //order cost
     private TaxStrategy $taxStrat; //stores tax calculation strategy (TaxStrategy object)
-    private float $tax = -1;
+    private float $tax;
+    private SplObjectStorage $_observers;
 
-    public function __construct($total, $strategy) {
-        $this->total = $total;
+    public function __construct($price, $strategy) {
+        $this->_observers = new SplObjectStorage();
+        $this->price = $price;
         $this->taxStrat = $strategy;
     }
     //sets new tax strategy
@@ -27,18 +30,37 @@ class Order
     {
         return $this->taxStrat;
     }
-    //sets new total
-    public function setTotal($total)
+    //sets new price
+    public function setPrice($price)
     {
-        $this->total = $total;
+        $this->price = $price;
     }
-    public function getTotal()
+    public function getPrice()
     {
-        return $this->total;
+        return $this->price;
     }
-    //returns order total with tax included
+    //returns order price with tax included
     public function getTotalAmount() {
-        return $this->taxStrat->calculateTax($this->total) + $this->total;
+         $this->tax = $this->taxStrat->calculateTax($this->price);
+         $this->notify();
+         return $this->price + $this->tax;
     }
 
+    public function attach(SplObserver $observer)
+    {
+        $this->_observers->attach($observer);
+    }
+
+    public function detach(SplObserver $observer)
+    {
+        $this->_observers->detach($observer);
+    }
+
+    public function notify()
+    {
+        foreach ($this->_observers as $observer) {
+            $observer->update($this);
+            break;
+        }
+    }
 }

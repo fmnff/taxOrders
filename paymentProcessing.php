@@ -5,12 +5,16 @@ function my_autoloader($class) {
 spl_autoload_register('my_autoloader');
 
 $orders = [new Order(100, new TaxStrategy(0)), new Order(500, new TaxStrategy(0))];
+$logger = new Logger();
+foreach ($orders as $order) {
+    $order->attach($logger);
+}
 $rates = [0, 5, 20];
 
 foreach ($rates as $rate) {
     foreach ($orders as $order) {
-        $order->getTaxStrat()->setTaxRate($rate);
-        echo ">> Order cost: " . round($order->getTotal(), 2) . "$, tax: " . $order->getTaxStrat()->getTaxRate()
-            . "%, total: " . round($order->getTotalAmount(), 2) . "$.\n";
+        $order->setTaxStrat(new TaxStrategy($rate));
+        echo ">> Order cost: " . $order->getPrice() . "$, tax: " . $order->getTaxStrat()->getTaxRate()
+            . "%, total: " . $order->getTotalAmount() . "$.\n";
     }
 }
