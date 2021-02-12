@@ -9,7 +9,6 @@ class TaxStrategy
     public function __construct($taxRate) {
         $this->taxRate = $taxRate;
     }
-    //sets new tax rate
     public function setTaxRate($taxRate)
     {
         $this->taxRate = $taxRate;

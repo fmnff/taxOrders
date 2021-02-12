@@ -17,3 +17,9 @@ Checked out order: cost 100$, tax 5%, total 105$ on February 9, 2021 at 10:17:38
 Checked out order: cost 500$, tax 5%, total 525$ on February 9, 2021 at 10:17:38pm.
 Checked out order: cost 100$, tax 20%, total 120$ on February 9, 2021 at 10:17:38pm.
 Checked out order: cost 500$, tax 20%, total 600$ on February 9, 2021 at 10:17:38pm.
+Checked out order: cost 100$, tax 0%, total 100$ on February 12, 2021 at 05:58:31pm.
+Checked out order: cost 100$, tax 5%, total 105$ on February 12, 2021 at 05:58:31pm.
+Checked out order: cost 100$, tax 20%, total 120$ on February 12, 2021 at 05:58:31pm.
+Checked out order: cost 500$, tax 0%, total 500$ on February 12, 2021 at 05:58:31pm.
+Checked out order: cost 500$, tax 5%, total 525$ on February 12, 2021 at 05:58:31pm.
+Checked out order: cost 500$, tax 20%, total 600$ on February 12, 2021 at 05:58:31pm.
